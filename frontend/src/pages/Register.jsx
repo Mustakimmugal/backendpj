@@ -15,7 +15,7 @@ const Register = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post("/api/v1/auth/register", form);
+      const res = await API.post("/auth/register", form);
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
     } catch (err) {
