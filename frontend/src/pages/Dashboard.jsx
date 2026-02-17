@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [title, setTitle] = useState("");
 
   const loadTasks = async () => {
-    const res = await API.get("/api/v1/tasks");
+    const res = await API.get("/tasks");
     setTasks(res.data);
   };
 
@@ -17,13 +17,13 @@ const Dashboard = () => {
 
   const addTask = async () => {
     if (!title) return;
-    await API.post("/api/v1/tasks", { title });
+    await API.post("/tasks", { title });
     setTitle("");
     loadTasks();
   };
 
   const deleteTask = async (id) => {
-    await API.delete(`/api/v1/tasks/${id}`);
+    await API.delete(`/tasks/${id}`);
     loadTasks();
   };
 
