@@ -4,7 +4,6 @@ const API = axios.create({
   baseURL: "https://backendpj.onrender.com/api",
 });
 
-// Automatically token attach karega
 API.interceptors.request.use(
   (req) => {
     const token = localStorage.getItem("token");
