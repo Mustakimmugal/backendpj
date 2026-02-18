@@ -2,10 +2,13 @@ import jwt from "jsonwebtoken";
 
 const authMiddleware = (req, res, next) => {
   try {
-    const token = req.headers.authorization;
+    const authHeader = req.headers.authorization;
 
-    if (!token)
+    if (!authHeader)
       return res.status(401).json({ message: "No token" });
+
+    // Bearer remove karo
+    const token = authHeader.split(" ")[1];
 
     const decoded = jwt.verify(
       token,
@@ -14,7 +17,7 @@ const authMiddleware = (req, res, next) => {
 
     req.user = decoded;
     next();
-  } catch {
+  } catch (err) {
     res.status(401).json({ message: "Invalid token" });
   }
 };
