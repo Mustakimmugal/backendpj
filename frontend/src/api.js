@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://backendpj.onrender.com/api/v1",
+  baseURL: "https://backendpj.onrender.com/api",
 });
 
 // Automatically token attach karega
