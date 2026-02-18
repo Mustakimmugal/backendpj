@@ -8,7 +8,6 @@ const Dashboard = () => {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
 
-  // Load Tasks
   const loadTasks = async () => {
     try {
       const res = await API.get("/tasks");
@@ -16,7 +15,6 @@ const Dashboard = () => {
     } catch (err) {
       console.log(err);
 
-      // Token invalid or expired
       if (err.response?.status === 401) {
         localStorage.removeItem("token");
         navigate("/");
@@ -24,7 +22,6 @@ const Dashboard = () => {
     }
   };
 
-  // Check token on load
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -36,7 +33,6 @@ const Dashboard = () => {
     loadTasks();
   }, []);
 
-  // Add Task
   const addTask = async () => {
     if (!title.trim()) return;
 
@@ -49,7 +45,6 @@ const Dashboard = () => {
     }
   };
 
-  // Delete Task
   const deleteTask = async (id) => {
     try {
       await API.delete(`/tasks/${id}`);
@@ -59,7 +54,6 @@ const Dashboard = () => {
     }
   };
 
-  // Logout
   const logoutHandler = () => {
     localStorage.removeItem("token");
     navigate("/");
