@@ -7,7 +7,6 @@ const authMiddleware = (req, res, next) => {
     if (!authHeader)
       return res.status(401).json({ message: "No token" });
 
-    // Bearer remove karo
     const token = authHeader.split(" ")[1];
 
     const decoded = jwt.verify(
